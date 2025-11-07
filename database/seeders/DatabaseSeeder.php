@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Service;
 use App\Models\Doctor;
-use App\Models\User; 
+use App\Models\User;   
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
