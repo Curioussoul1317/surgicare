@@ -13,6 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'asad@gmail.com',
+            'password' => Hash::make('Unknown@123'),
+            'email_verified_at' => now(),
+            'is_admin' => 1, 
+        ]);
+
         // Create Services
         $services = [
             [
