@@ -12,6 +12,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\AppointmentsController;
+use App\Http\Controllers\DepartmentsController;
+use App\Http\Controllers\Admin\AdminDepartmentsController;
 
 Auth::routes();
 /*
@@ -43,6 +45,12 @@ Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact
 
  
 Auth::routes();
+
+Route::get('/departments', [DepartmentsController::class, 'index'])->name('departments.index');
+Route::get('/departments/{department}', [DepartmentsController::class, 'show'])->name('departments.show');
+
+// AJAX search (optional)
+Route::get('/api/departments/search', [DepartmentsController::class, 'search'])->name('departments.search');
 
 
 /*
@@ -80,6 +88,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::patch('appointments/{appointment}/status', [AppointmentsController::class, 'updateStatus'])->name('appointments.updateStatus');
     Route::delete('appointments/{appointment}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
  
+    Route::resource('departments', AdminDepartmentsController::class);
+    Route::get('/departments/{department}/assign-doctors', [AdminDepartmentsController::class, 'assignDoctors'])
+    ->name('departments.assign-doctors');
+Route::post('/departments/{department}/assign-doctors', [AdminDepartmentsController::class, 'storeDoctors'])
+    ->name('departments.store-doctors');
+
+// Routes for assigning services to departments
+Route::get('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'assignServices'])
+    ->name('departments.assign-services');
+Route::post('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'storeServices'])
+    ->name('departments.store-services');
+
     // Hero Sliders
     Route::resource('hero-sliders', HeroSliderController::class);
     Route::patch('hero-sliders/{heroSlider}/toggle-status', [HeroSliderController::class, 'toggleStatus'])
