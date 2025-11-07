@@ -90,6 +90,7 @@
                 </div>
                 @endif
 
+                <div class="row">
                 <!-- Services Section -->
                 @if($doctor->services->count() > 0)
                 <div class="card shadow-sm border-0 mb-4">
@@ -204,6 +205,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -494,7 +494,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, rgba(18, 153, 34, 0.8) 0%, rgba(13, 112, 24, 0.85) 100%);
+        /* background: linear-gradient(135deg, rgba(18, 153, 34, 0.8) 0%, rgba(13, 112, 24, 0.85) 100%); */
     }
     
     .carousel-caption {
