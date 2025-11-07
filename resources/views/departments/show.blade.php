@@ -123,7 +123,7 @@
                         @if($service->price)
                         <p class="mb-0">
                             <strong>Price:</strong> 
-                            <span class="text-primary">${{ number_format($service->price, 2) }}</span>
+                            <span class="text-primary">Mvr{{ number_format($service->price, 2) }} /-</span>
                         </p>
                         @endif
                         

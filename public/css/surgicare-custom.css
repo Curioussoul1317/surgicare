@@ -4,11 +4,14 @@
    ======================================== */
 
    :root {
+
+ 
+
     /* Primary Colors */
-    --primary-color: #2ca38f;
-    --primary-dark: #0ca01e;
-    --primary-light: #1bc82f;
-    --primary-lightest: #e8f5ea;
+    --primary-color: #2c6975;
+    --primary-dark: #1f4d57;
+    --primary-light: #68a5b3;
+    --primary-lightest: #e8f2f4;
     
     /* Secondary Colors */
     --secondary-color: #2c3e50;

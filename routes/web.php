@@ -89,16 +89,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::delete('appointments/{appointment}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
  
     Route::resource('departments', AdminDepartmentsController::class);
+    
+    // Department-Doctor assignment routes
     Route::get('/departments/{department}/assign-doctors', [AdminDepartmentsController::class, 'assignDoctors'])
-    ->name('departments.assign-doctors');
-Route::post('/departments/{department}/assign-doctors', [AdminDepartmentsController::class, 'storeDoctors'])
-    ->name('departments.store-doctors');
-
-// Routes for assigning services to departments
-Route::get('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'assignServices'])
-    ->name('departments.assign-services');
-Route::post('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'storeServices'])
-    ->name('departments.store-services');
+        ->name('departments.assign-doctors');
+    Route::post('/departments/{department}/assign-doctors', [AdminDepartmentsController::class, 'storeDoctors'])
+        ->name('departments.store-doctors');
+    
+    // Department-Service assignment routes
+    Route::get('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'assignServices'])
+        ->name('departments.assign-services');
+    Route::post('/departments/{department}/assign-services', [AdminDepartmentsController::class, 'storeServices'])
+        ->name('departments.store-services');
 
     // Hero Sliders
     Route::resource('hero-sliders', HeroSliderController::class);

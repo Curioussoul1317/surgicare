@@ -100,8 +100,269 @@
 </section>
 @endif
 
-<!-- Features Section -->
-<section class="py-5 bg-light">
+
+
+<!-- Now Serving Section - Simple Version (No Appointment Status Required) -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <!-- Header with Professional Time Display -->
+        <div class="text-center mb-4">
+            <div class="d-inline-flex align-items-center gap-3 mb-3">
+                <div class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="text-uppercase fw-semibold" style="color: var(--primary-color); font-size: 0.875rem; letter-spacing: 0.5px;">Live Now</span>
+                </div>
+                <div class="time-display">
+                    <i class="bi bi-clock me-2" style="color: var(--primary-light);"></i>
+                    <span class="fw-bold" style="color: var(--text-primary); font-size: 1.125rem;">
+                        <?php echo date("g:i A"); ?>
+                    </span>
+                </div>
+            </div>
+            <h2 class="fw-bold mb-2" style="color: var(--text-primary);">Doctors On Duty</h2>
+            <p class="text-muted mb-0">Current Token Number and Room</p>
+        </div>
+
+        <!-- Doctors Cards -->
+        <div class="row g-3 justify-content-center">
+            @forelse($doctors as $doctor)
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="doctor-duty-card">
+                    <!-- Doctor Initial/Avatar -->
+                    <div class="doctor-avatar">
+                        <span>{{ strtoupper(substr($doctor->name, 0, 1)) }}</span>
+                    </div>
+
+                    <!-- Doctor Info -->
+                    <h6 class="doctor-name">{{ $doctor->name }}</h6>
+                    <p class="doctor-specialty">{{ $doctor->specialization }}</p>
+
+                    <!-- Room Number Badge -->
+                    <div class="room-badge">
+                        <i class="bi bi-door-closed me-1"></i>
+                        <span>Room {{ $doctor->room_number ?? 'N/A' }}</span>
+                    </div>
+                    <div class="room-badge">
+                        <i class="bi bi-door-closed me-1"></i>
+                        <span>Token {{ $doctor->room_number ?? 'N/A' }}</span>
+                    </div>
+
+                    <!-- Status Indicator -->
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Available</span>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-calendar-x" style="font-size: 3rem; color: var(--text-light);"></i>
+                    <p class="text-muted mt-3">No doctors currently on duty</p>
+                </div>
+            </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+
+<style>
+/* Live Indicator */
+.live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(44, 105, 117, 0.05);
+    border-radius: 50px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+    position: relative;
+    animation: pulse-animation 2s ease-out infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+
+/* Time Display */
+.time-display {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(44, 105, 117, 0.08);
+}
+
+/* Doctor Duty Card */
+.doctor-duty-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    border: 1px solid #e1e6e9;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-duty-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2c6975, #68a5b3);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.doctor-duty-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(44, 105, 117, 0.15);
+    border-color: #68a5b3;
+}
+
+.doctor-duty-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Doctor Avatar */
+.doctor-avatar {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #2c6975 0%, #68a5b3 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 12px rgba(44, 105, 117, 0.2);
+    transition: all 0.3s ease;
+}
+
+.doctor-duty-card:hover .doctor-avatar {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 16px rgba(44, 105, 117, 0.3);
+}
+
+/* Doctor Info */
+.doctor-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e4f;
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
+}
+
+.doctor-specialty {
+    font-size: 0.813rem;
+    color: #6c7a89;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Room Badge */
+.room-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.875rem;
+    background: linear-gradient(135deg, rgba(44, 105, 117, 0.08) 0%, rgba(104, 165, 179, 0.08) 100%);
+    border-radius: 50px;
+    font-size: 0.813rem;
+    font-weight: 600;
+    color: #2c6975;
+    margin-bottom: 0.875rem;
+    border: 1px solid rgba(44, 105, 117, 0.1);
+}
+
+.room-badge i {
+    font-size: 0.875rem;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: #4a9d7f;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #4a9d7f;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .doctor-duty-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .doctor-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .doctor-name {
+        font-size: 0.938rem;
+    }
+
+    .doctor-specialty {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .live-indicator,
+    .time-display {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.813rem;
+    }
+
+    .time-display span {
+        font-size: 1rem !important;
+    }
+}
+</style>
+ 
+
+          <!-- Features Section -->
+<!-- <section class="py-5 bg-light">
     <div class="container">
         <div class="row">
             <div class="col-md-4 text-center mb-4">
@@ -127,7 +388,8 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
+
 
 <!-- Services Section -->
 <section class="py-5">

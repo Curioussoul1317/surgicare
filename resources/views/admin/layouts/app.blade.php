@@ -81,6 +81,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('admin.departments.*') ? 'active' : '' }}" href="{{ route('admin.departments.index') }}">
+                                <i class="bi bi-heart-pulse"></i> Department
+                            </a>
+                        </li>
+                        <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">
                                 <i class="bi bi-heart-pulse"></i> Services
                             </a>
