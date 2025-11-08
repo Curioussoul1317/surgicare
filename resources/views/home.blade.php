@@ -5,6 +5,88 @@
 @section('content')
 <!-- Hero Slider Section -->
 @if($heroSliders->count() > 0)
+<!-- <section class="hero-slider">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+     
+        <div class="carousel-indicators">
+            @foreach($heroSliders as $index => $slider)
+            <button type="button" 
+                    data-bs-target="#heroCarousel" 
+                    data-bs-slide-to="{{ $index }}" 
+                    class="{{ $index === 0 ? 'active' : '' }}"
+                    aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
+        </div>
+
+ 
+        <div class="carousel-inner">
+            @foreach($heroSliders as $index => $slider)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+           
+                <img src="{{ asset('storage/' . $slider->image) }}" 
+                     class="d-block w-100" 
+                     alt="{{ $slider->title }}"
+                     style="height: 600px; object-fit: cover;">
+                
+           
+                <div class="carousel-overlay"></div>
+                
+             
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 text-center">
+                                @if($slider->title)
+                                <h1 class="display-3 fw-bold mb-4 animate-fade-in-up">
+                                    {{ $slider->title }}
+                                </h1>
+                                @endif
+                                
+                                @if($slider->subtitle)
+                                <p class="lead mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+                                    {{ $slider->subtitle }}
+                                </p>
+                                @endif
+                                
+                                @if($slider->description)
+                                <p class="mb-5 animate-fade-in-up" style="animation-delay: 0.3s;">
+                                    {{ $slider->description }}
+                                </p>
+                                @endif
+                                 
+                                <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
+                                <div>
+            <a href="{{ route('appointments.create') }}" class="btn btn-light btn-lg me-3">
+                <i class="bi bi-calendar-check"></i> Book Appointment
+            </a>
+            <a href="{{ route('services.index') }}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-list-ul"></i> Our Services
+            </a>
+        </div>
+        </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+   
+        @if($heroSliders->count() > 1)
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        @endif
+    </div>
+</section> -->
+
 <section class="hero-slider">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <!-- Indicators -->
@@ -24,9 +106,36 @@
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <!-- Slider Image -->
                 <img src="{{ asset('storage/' . $slider->image) }}" 
-                     class="d-block w-100" 
+                     class="d-block w-100 slider-image" 
                      alt="{{ $slider->title }}"
                      style="height: 600px; object-fit: cover;">
+                
+                <!-- Animated Background (between image and content) -->
+                <ul class="background-slider">
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                </ul>
                 
                 <!-- Overlay -->
                 <div class="carousel-overlay"></div>
@@ -53,14 +162,17 @@
                                     {{ $slider->description }}
                                 </p>
                                 @endif
-                                
-                                @if($slider->button_text && $slider->button_link)
+                                 
                                 <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
-                                    <a href="{{ $slider->button_link }}" class="btn btn-light btn-lg">
-                                        {{ $slider->button_text }} <i class="bi bi-arrow-right"></i>
-                                    </a>
+                                    <div>
+                                        <a href="{{ route('appointments.create') }}" class="btn btn-light btn-lg me-3">
+                                            <i class="bi bi-calendar-check"></i> Book Appointment
+                                        </a>
+                                        <a href="{{ route('services.index') }}" class="btn btn-outline-light btn-lg">
+                                            <i class="bi bi-list-ul"></i> Our Services
+                                        </a>
+                                    </div>
                                 </div>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -82,6 +194,7 @@
         @endif
     </div>
 </section>
+
 @else
 <!-- Default Hero Section (if no sliders) -->
 <section class="hero-section text-center">
@@ -129,8 +242,11 @@
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="doctor-duty-card">
                     <!-- Doctor Initial/Avatar -->
+                    <div class="room-badge"> 
+                        <span>Token {{ $doctor->room_number ?? ' ' }}</span>
+                    </div> 
                     <div class="doctor-avatar">
-                        <span>{{ strtoupper(substr($doctor->name, 0, 1)) }}</span>
+                        <span>15</span>
                     </div>
 
                     <!-- Doctor Info -->
@@ -140,18 +256,9 @@
                     <!-- Room Number Badge -->
                     <div class="room-badge">
                         <i class="bi bi-door-closed me-1"></i>
-                        <span>Room {{ $doctor->room_number ?? 'N/A' }}</span>
-                    </div>
-                    <div class="room-badge">
-                        <i class="bi bi-door-closed me-1"></i>
-                        <span>Token {{ $doctor->room_number ?? 'N/A' }}</span>
-                    </div>
-
-                    <!-- Status Indicator -->
-                    <div class="status-indicator">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Available</span>
-                    </div>
+                        <span>Room {{ $doctor->room_number ?? '3' }}</span>
+                    </div> 
+ 
                 </div>
             </div>
             @empty
@@ -396,7 +503,7 @@
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="section-title">Our Services</h2>
-            <div class="divider"></div>
+           
             <p class="section-subtitle">Comprehensive healthcare services tailored to your needs</p>
         </div>
         <div class="row">
@@ -432,8 +539,7 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">Our Expert Doctors</h2>
-            <div class="divider"></div>
+            <h2 class="section-title">Our Expert Doctors</h2> 
             <p class="section-subtitle">Meet our team of highly qualified medical professionals</p>
         </div>
         <div class="row">

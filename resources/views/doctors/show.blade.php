@@ -87,13 +87,10 @@
                         </h3>
                         <p class="card-text text-muted" style="white-space: pre-line; line-height: 1.8;">{{ $doctor->bio }}</p>
                     </div>
-                </div>
-                @endif
 
-                <div class="row">
-                <!-- Services Section -->
-                @if($doctor->services->count() > 0)
-                <div class="card shadow-sm border-0 mb-4">
+
+                     <!-- Services Section -->
+                @if($doctor->services->count() > 0) 
                     <div class="card-body p-4">
                         <h3 class="card-title h4 mb-4">
                             <i class="bi bi-heart-pulse text-primary me-2"></i>
@@ -121,7 +118,7 @@
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             @if($service->price)
                                             <span class="text-primary fw-bold">
-                                                <i class="bi bi-tag-fill me-1"></i>${{ number_format($service->price, 2) }}
+                                                <i class="bi bi-tag-fill me-1"></i>Mvr {{ number_format($service->price, 2) }} /-
                                             </span>
                                             @endif
                                             @if($service->duration)
@@ -138,12 +135,10 @@
                             </div>
                             @endforeach
                         </div>
-                    </div>
-                </div>
+                    </div> 
                 @endif
 
-                <!-- Professional Highlights -->
-                <div class="card shadow-sm border-0">
+             
                     <div class="card-body p-4">
                         <h3 class="card-title h4 mb-4">
                             <i class="bi bi-star text-primary me-2"></i>
@@ -204,14 +199,23 @@
                             </div>
                         </div>
                     </div>
+           
+
                 </div>
+                @endif
+
+                <div class="row">
+               
+
+                <!-- Professional Highlights -->
+             
                 </div>
 
             </div>
         </div>
     </div>
 </section>
-
+ 
 <!-- Other Doctors -->
 @php
     $otherDoctors = \App\Models\Doctor::where('is_active', true)

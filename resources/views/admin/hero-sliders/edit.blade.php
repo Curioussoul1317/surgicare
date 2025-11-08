@@ -82,7 +82,7 @@
                                 <img id="preview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 300px;">
                             </div>
                         </div>
-
+<!-- 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="button_text" class="form-label">Button Text</label>
@@ -109,7 +109,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -176,7 +176,7 @@
                 </div>
             </div>
 
-            <div class="card shadow mt-3">
+            <!-- <div class="card shadow mt-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <i class="bi bi-info-circle text-primary"></i> Tips
@@ -200,7 +200,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -135,7 +135,22 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="card">
+
+        <div class="card mt-3">
+                <div class="card-header">
+                    <h3 class="card-title">Quick Actions</h3>
+                </div>
+                <div class="card-body">
+                    <a href="{{ route('admin.departments.assign-doctors', $department) }}" class="btn btn-info w-100 mb-2">
+                        <i class="fas fa-user-md me-1"></i>
+                        Assign Doctors
+                    </a>
+                    <a href="{{ route('admin.departments.assign-services', $department) }}" class="btn btn-success w-100">
+                        <i class="fas fa-stethoscope me-1"></i>
+                        Assign Services
+                    </a>
+                </div>
+
                 <div class="card-header">
                     <h3 class="card-title">Quick Stats</h3>
                 </div>
@@ -155,21 +170,8 @@
                 </div>
             </div>
 
-            <div class="card mt-3">
-                <div class="card-header">
-                    <h3 class="card-title">Quick Actions</h3>
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('admin.departments.assign-doctors', $department) }}" class="btn btn-info w-100 mb-2">
-                        <i class="fas fa-user-md me-1"></i>
-                        Assign Doctors
-                    </a>
-                    <a href="{{ route('admin.departments.assign-services', $department) }}" class="btn btn-success w-100">
-                        <i class="fas fa-stethoscope me-1"></i>
-                        Assign Services
-                    </a>
-                </div>
-            </div>
+         
+         
         </div>
     </div>
 </div>

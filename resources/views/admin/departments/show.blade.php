@@ -23,6 +23,8 @@
         </div>
     </div>
 
+
+    
     <div class="row">
         <div class="col-lg-8">
             <!-- Department Info -->
@@ -101,7 +103,7 @@
                     @else
                         <div class="row">
                             @foreach($department->doctors as $doctor)
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-2">
                                 <div class="d-flex align-items-center">
                                     @if($doctor->image)
                                     <img src="{{ asset('storage/' . $doctor->image) }}" 
@@ -162,7 +164,7 @@
                                         </td>
                                         <td>
                                             @if($service->price)
-                                                ${{ number_format($service->price, 2) }}
+                                              Mvr{{ number_format($service->price, 2) }}
                                             @else
                                                 <span class="text-muted">N/A</span>
                                             @endif

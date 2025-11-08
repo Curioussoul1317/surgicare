@@ -185,7 +185,7 @@
 
         <!-- Help Card -->
         <div class="col-lg-4">
-            <div class="card shadow">
+            <!-- <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">
                         <i class="bi bi-info-circle text-primary"></i> Tips
@@ -213,7 +213,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
             <div class="card shadow mt-3">
                 <div class="card-body">

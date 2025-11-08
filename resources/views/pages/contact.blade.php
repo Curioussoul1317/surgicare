@@ -4,12 +4,39 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
-    <div class="container">
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
         <h1 class="display-4 fw-bold">Contact Us</h1>
         <p class="lead">We're here to help. Get in touch with us today.</p>
     </div>
 </section>
+ 
 
 <!-- Contact Section -->
 <section class="py-5">
@@ -88,34 +115,38 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="card shadow mb-4">
+            <div class="row"> 
+            <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             <i class="bi bi-building text-primary"></i> Main Office
                         </h5>
                         <p class="mb-2">
                             <i class="bi bi-geo-alt"></i> 
-                            123 Medical Center Drive<br>
-                            Healthcare District<br>
-                            City, State 12345
+                            M. Rihaab<br>
+                            Shaheed Ali Hingun<br>
+                            Male' ,Rep. of Maldives ,20324
                         </p>
                     </div>
                 </div>
-
-                <div class="card shadow mb-4">
+            </div>
+          
+ 
+            <div class="row"> 
+            <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             <i class="bi bi-telephone text-primary"></i> Phone
                         </h5>
                         <p class="mb-2">
-                            <strong>Main:</strong> 9969317<br>
-                            <strong>Emergency:</strong> 9969317<br>
-                            <strong>Appointments:</strong> 9969317
+                            <strong>Main:</strong> 3310062<br> 
+                            <strong>Appointments:</strong> 7292020
                         </p>
                     </div>
                 </div>
-
-                <div class="card shadow mb-4">
+            </div>
+            <div class="row"> 
+            <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             <i class="bi bi-envelope text-primary"></i> Email
@@ -127,8 +158,9 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="card shadow mb-4">
+            </div>
+            <div class="row"> 
+            <div class="card shadow mb-4">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             <i class="bi bi-clock text-primary"></i> Working Hours
@@ -141,28 +173,9 @@
                         <p class="mb-0">Closed (Emergency: 24/7)</p>
                     </div>
                 </div>
-
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">
-                            <i class="bi bi-share text-primary"></i> Follow Us
-                        </h5>
-                        <div class="d-flex gap-3">
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="bi bi-twitter"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+           
+ 
             </div>
         </div>
     </div>

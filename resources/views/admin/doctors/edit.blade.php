@@ -204,7 +204,7 @@
                 </div>
             </div>
 
-            <div class="card shadow mt-3">
+            <!-- <div class="card shadow mt-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <i class="bi bi-lightbulb text-primary"></i> Tips
@@ -224,7 +224,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

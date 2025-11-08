@@ -3,16 +3,43 @@
 @section('title', 'Our Services - SurgiCare')
 
 @section('content')
+ 
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
-    <div class="container">
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
         <h1 class="display-4 fw-bold">Our Services</h1>
         <p class="lead">Comprehensive healthcare services for all your medical needs</p>
     </div>
 </section>
 
 <!-- Services List -->
-<section class="py-5">
+<section class="py-5"> 
     <div class="container">
         <div class="row">
             @forelse($services as $service)

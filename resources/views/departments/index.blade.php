@@ -3,11 +3,43 @@
 @section('title', 'Departments')
 
 @section('content')
+
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="display-4 fw-bold">Our Departments</h1>
+        <p class="lead">Explore our specialized medical departments and the services we offer.</p>
+    </div>
+</section>
+
 <div class="container py-5">
     <div class="row mb-4">
-        <div class="col-lg-8">
-            <h1 class="mb-3">Our Departments</h1>
-            <p class="text-muted">Explore our specialized medical departments and the services we offer.</p>
+        <div class="col-lg-8"> 
         </div>
         <div class="col-lg-4">
             <form action="{{ route('departments.index') }}" method="GET" class="d-flex">

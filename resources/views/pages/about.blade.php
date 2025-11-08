@@ -4,12 +4,39 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
-    <div class="container">
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
         <h1 class="display-4 fw-bold">About SurgiCare</h1>
         <p class="lead">Committed to excellence in healthcare since our establishment</p>
     </div>
 </section>
+ 
 
 <!-- About Section -->
 <section class="py-5">
@@ -178,16 +205,19 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4">
                             <i class="bi bi-geo-alt text-primary"></i> Our Location
-                        </h4>
+                        </h4> 
                         <div class="mb-3">
                             <h6 class="text-muted">Address</h6>
-                            <p>Male , maldives ........<br>
-                            sssssssssssss<br>
-                            ssssssssssss</p>
+                            <p> M. Rihaab<br>
+                            Shaheed Ali Hingun<br>
+                                Male' 
+                                
+                                Rep. of Maldives ,20324 <br>
+                            </p>
                         </div>
                         <div class="mb-3">
                             <h6 class="text-muted">Phone</h6>
-                            <p><i class="bi bi-telephone"></i> 9969317</p>
+                            <p><i class="bi bi-telephone"></i> 3310062</p>
                         </div>
                         <div class="mb-3">
                             <h6 class="text-muted">Email</h6>

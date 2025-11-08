@@ -71,7 +71,7 @@
                     
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="#">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
