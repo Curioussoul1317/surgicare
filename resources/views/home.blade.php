@@ -600,7 +600,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        /* background: linear-gradient(135deg, rgba(18, 153, 34, 0.8) 0%, rgba(13, 112, 24, 0.85) 100%); */
+        background: linear-gradient(135deg, rgb(18 128 153 / 42%) 0%, rgb(46 125 143 / 36%) 100%);
     }
     
     .carousel-caption {
@@ -622,7 +622,7 @@
     .carousel-control-next-icon {
         width: 3rem;
         height: 3rem;
-        background-color: rgba(18, 153, 34, 0.8);
+        background-color: rgb(18 128 153 / 80%);
         border-radius: 50%;
     }
     
@@ -635,7 +635,7 @@
     }
     
     .carousel-indicators .active {
-        background-color: #129922;
+        background-color: rgb(18 128 153 / 80%)
     }
     
     /* Fade animation for carousel */

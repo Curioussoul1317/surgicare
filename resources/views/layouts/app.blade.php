@@ -70,7 +70,7 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 12px rgb(135 135 135 / 40%);
             z-index: 1050;
             transition: all 0.3s ease;
             cursor: pointer;
