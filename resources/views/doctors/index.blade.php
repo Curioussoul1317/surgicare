@@ -94,9 +94,10 @@
             @endforelse
         </div>
 
+ 
         <!-- Pagination -->
         <div class="d-flex justify-content-center mt-4">
-            {{ $doctors->links() }}
+            {{ $doctors->links('custom.pagination') }}
         </div>
     </div>
 </section>

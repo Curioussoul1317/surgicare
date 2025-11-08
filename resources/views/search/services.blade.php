@@ -162,7 +162,7 @@
         
         <!-- Pagination -->
         <div class="mt-4">
-            {{ $services->links() }}
+            {{ $services->links('custom.pagination') }}
         </div>
         @else
         <div class="text-center py-5">

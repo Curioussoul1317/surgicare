@@ -173,7 +173,7 @@
         
         <!-- Pagination -->
         <div class="mt-4">
-            {{ $doctors->links() }}
+            {{ $doctors->links('custom.pagination') }}
         </div>
         @else
         <div class="text-center py-5">

@@ -105,7 +105,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-4">
-            {{ $departments->links() }}
+            {{ $departments->links('custom.pagination') }}
         </div>
     @endif
 </div>
