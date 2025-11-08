@@ -530,6 +530,34 @@
         </div>
     </nav>
 
+    <style>
+        /* Checked/Active State */
+.btn-check:checked + .btn-outline-primary {
+    background-color: #3BA09C;  /* Your teal color */
+    border-color: #3BA09C;
+    color: white;
+}
+
+/* Hover State (slightly darker) */
+.btn-check:checked + .btn-outline-primary:hover {
+    background-color: #2d8a86;
+    border-color: #2d8a86;
+}
+
+/* Inactive/Outline State */
+.btn-outline-primary {
+    border-color: #3BA09C;
+    color: #3BA09C;
+}
+
+/* Inactive Hover */
+.btn-outline-primary:hover {
+    background-color: #3BA09C;
+    border-color: #3BA09C;
+    color: white;
+}
+        </style>
+
     <!-- Search Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -891,7 +919,7 @@ Rep. of Maldives </li>
             const optionsDiv = document.createElement('div');
             optionsDiv.className = 'contact-options';
             optionsDiv.innerHTML = `
-                <a href="https://wa.me/9609969317?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
+                <a href="https://wa.me/9607292020?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" 
                    target="_blank" 
                    class="contact-option-card">
                     <div class="contact-option-icon whatsapp">
@@ -902,13 +930,13 @@ Rep. of Maldives </li>
                         <p>Chat with us instantly</p>
                     </div>
                 </a>
-                <a href="tel:9609969317" class="contact-option-card">
+                <a href="tel:9607292020" class="contact-option-card">
                     <div class="contact-option-icon phone">
                         <i class="bi bi-telephone-fill"></i>
                     </div>
                     <div class="contact-option-text">
                         <h6>Call Us</h6>
-                        <p>960 996 9317</p>
+                        <p>960 7292020</p>
                     </div>
                 </a>
                 <a href="mailto:info@surgicare.com" class="contact-option-card">
