@@ -78,7 +78,7 @@
         }
         
         .chat-widget-button:hover {
-            background-color: #20BA5A;
+            background-color:rgb(43, 195, 201);
             transform: scale(1.1);
             box-shadow: 0 6px 16pxrgb(33, 148, 144);
         }
@@ -347,7 +347,7 @@
         }
         
         .chat-send-btn:hover {
-            background: #20BA5A;
+            background: #54c9c5;
             transform: scale(1.05);
         }
         

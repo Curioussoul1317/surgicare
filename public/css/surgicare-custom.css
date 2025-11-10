@@ -5,9 +5,9 @@
 
    :root {
     /* Primary Colors - Teal/Cyan */
-    --primary-color: #4DC5C0;
-    --primary-dark: #3BA09C;
-    --primary-light: #74DCDD;
+    --primary-color: #00beb5;
+    --primary-dark: #00b4ae;
+    --primary-light: #00d5d7 ;
     --primary-lightest: #E8F9F8;
     
     /* Secondary Colors - Purple/Magenta */
