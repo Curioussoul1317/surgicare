@@ -21,7 +21,7 @@ Auth::routes();
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
+ 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -37,6 +37,18 @@ Route::get('/doctors/{id}', [DoctorController::class, 'show'])->name('doctors.sh
 Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::get('/appointments/doctor/{doctorId}/services', [AppointmentController::class, 'getServicesByDoctor'])->name('appointments.doctor.services');
+
+
+Route::get('/appointments/doctor/{doctor}/services', [AppointmentController::class, 'getDoctorServices'])->name('appointments.doctor.services');
+Route::get('/appointments/service/{service}/doctors', [AppointmentController::class, 'getServiceDoctors'])->name('appointments.service.doctors');
+
+
+
+Route::post('/appointments/send-otp', [AppointmentController::class, 'sendOtp'])->name('appointments.send-otp');
+Route::get('/appointments/verify-otp', [AppointmentController::class, 'showVerifyOtp'])->name('appointments.verify-otp');
+Route::post('/appointments/verify-otp', [AppointmentController::class, 'verifyOtp'])->name('appointments.verify-otp.submit');
+Route::post('/appointments/resend-otp', [AppointmentController::class, 'resendOtp'])->name('appointments.resend-otp');
+Route::get('/appointments/success/{id}', [AppointmentController::class, 'showSuccess'])->name('appointments.success');
 
 // Pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -87,6 +99,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('appointments/{appointment}', [AppointmentsController::class, 'show'])->name('appointments.show');
     Route::patch('appointments/{appointment}/status', [AppointmentsController::class, 'updateStatus'])->name('appointments.updateStatus');
     Route::delete('appointments/{appointment}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
+
+
+
+
  
     Route::resource('departments', AdminDepartmentsController::class);
     

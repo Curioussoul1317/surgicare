@@ -27,11 +27,11 @@
                     <div class="card-body p-4">
                         <h3 class="card-title mb-4">Appointment Details</h3>
                         
-                        <form action="{{ route('appointments.store') }}" method="POST">
+                        <!-- <form action="{{ route('appointments.store') }}" method="POST"> -->
+                        <form action="{{ route('appointments.send-otp') }}" method="POST" id="appointmentForm">
                             @csrf
 
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
+                            <div class="mb-3">
                                     <label for="patient_name" class="form-label">Full Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('patient_name') is-invalid @enderror" 
                                            id="patient_name" name="patient_name" value="{{ old('patient_name') }}" required>
@@ -40,17 +40,19 @@
                                     @enderror
                                 </div>
 
+                            <div class="row">
+                                
+
                                 <div class="col-md-6 mb-3">
-                                    <label for="patient_email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control @error('patient_email') is-invalid @enderror" 
-                                           id="patient_email" name="patient_email" value="{{ old('patient_email') }}" required>
-                                    @error('patient_email')
+                                    <label for="patient_nicno" class="form-label">NIC Number <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('patient_nicno') is-invalid @enderror" 
+                                           id="patient_nicno" name="patient_nicno" value="{{ old('patient_nicno') }}" required>
+                                    @error('patient_nicno')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
 
-                            <div class="mb-3">
+                                <div class="col-md-6 mb-3">
                                 <label for="patient_phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
                                 <input type="tel" class="form-control @error('patient_phone') is-invalid @enderror" 
                                        id="patient_phone" name="patient_phone" value="{{ old('patient_phone') }}" required>
@@ -59,7 +61,11 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
+                            </div>
+
+                            
+
+                            <!-- <div class="mb-3">
                                 <label for="doctor_id" class="form-label">Select Doctor <span class="text-danger">*</span></label>
                                 <select class="form-select @error('doctor_id') is-invalid @enderror" 
                                         id="doctor_id" name="doctor_id" required>
@@ -73,9 +79,9 @@
                                 @error('doctor_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="service_id" class="form-label">Select Service <span class="text-danger">*</span></label>
                                 <select class="form-select @error('service_id') is-invalid @enderror" 
                                         id="service_id" name="service_id" required>
@@ -93,7 +99,96 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <small class="text-muted">Note: Services will be filtered based on selected doctor</small>
-                            </div>
+                            </div> -->
+
+                            <!-- Doctor Selection -->
+                        <!-- Doctor Selection -->
+@if(!isset($selectedDoctorId))
+    <div class="mb-3">
+        <label for="doctor_id" class="form-label">Select Doctor <span class="text-danger">*</span></label>
+        <select class="form-select @error('doctor_id') is-invalid @enderror" 
+                id="doctor_id" name="doctor_id" required>
+            <option value="">Choose a doctor...</option>
+            @foreach($doctors as $doctor)
+            <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>
+                {{ $doctor->name }} - {{ $doctor->specialization }}
+            </option>
+            @endforeach
+        </select>
+        @error('doctor_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+@else
+    <!-- Hidden field with pre-selected doctor -->
+    <input type="hidden" name="doctor_id" value="{{ $selectedDoctorId }}">
+    
+    <!-- Display selected doctor info with option to change -->
+    <div class="mb-3">
+        <label class="form-label">Selected Doctor</label>
+        <div class="alert alert-info d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-person-check me-2"></i>
+                <div>
+                    <strong>{{ $selectedDoctor->name ?? 'Doctor' }}</strong>
+                    @if(isset($selectedDoctor->specialization))
+                        <br><small>{{ $selectedDoctor->specialization }}</small>
+                    @endif
+                </div>
+            </div>
+            <a href="{{ route('appointments.create') }}" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-arrow-repeat"></i> Change
+            </a>
+        </div>
+    </div>
+@endif
+
+<!-- Service Selection -->
+@if(!isset($selectedServiceId))
+    <div class="mb-3">
+        <label for="service_id" class="form-label">Select Service <span class="text-danger">*</span></label>
+        <select class="form-select @error('service_id') is-invalid @enderror" 
+                id="service_id" name="service_id" required>
+            <option value="">Choose a service...</option>
+            @foreach($services as $service)
+            <option value="{{ $service->id }}" {{ old('service_id') == $service->id ? 'selected' : '' }}>
+                {{ $service->name }}
+                @if($service->price)
+                - Mvr{{ number_format($service->price, 2) }}
+                @endif
+            </option>
+            @endforeach
+        </select>
+        @error('service_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        @if(!isset($selectedDoctorId))
+        <small class="text-muted">Services will be filtered based on selected doctor</small>
+        @endif
+    </div>
+@else
+    <!-- Hidden field with pre-selected service -->
+    <input type="hidden" name="service_id" value="{{ $selectedServiceId }}">
+    
+    <!-- Display selected service info with option to change -->
+    <div class="mb-3">
+        <label class="form-label">Selected Service</label>
+        <div class="alert alert-info d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-bandaid me-2"></i>
+                <div>
+                    <strong>{{ $selectedService->name ?? 'Service' }}</strong>
+                    @if(isset($selectedService->price))
+                        <br><small>Price: Mvr{{ number_format($selectedService->price, 2) }}</small>
+                    @endif
+                </div>
+            </div>
+            <a href="{{ route('appointments.create') }}" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-arrow-repeat"></i> Change
+            </a>
+        </div>
+    </div>
+@endif
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -135,7 +230,7 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
                                     <i class="bi bi-calendar-check"></i> Book Appointment
                                 </button>
                             </div>
@@ -189,6 +284,23 @@
 @endsection
 
 @push('scripts')
+
+<script>
+document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Disable button to prevent double submission
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending OTP...';
+    
+    // Re-enable after 5 seconds in case of error
+    setTimeout(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-calendar-check"></i> Book Appointment';
+    }, 5000);
+});
+</script>
+
 <script>
     // Dynamic service filtering based on selected doctor
     document.getElementById('doctor_id').addEventListener('change', function() {
@@ -222,5 +334,162 @@
             @endforeach
         }
     });
+ 
+
+
+ 
+</script> 
+
+@endpush
+
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const doctorSelect = document.getElementById('doctor_id');
+    const serviceSelect = document.getElementById('service_id');
+    
+    // Only add event listeners if both selects exist (not pre-selected)
+    if (!doctorSelect || !serviceSelect) {
+        console.log('Doctor or Service select not found on page');
+        return;
+    }
+    
+    // Store original options
+    const originalServices = Array.from(serviceSelect.options);
+    const originalDoctors = Array.from(doctorSelect.options);
+    
+    console.log('Dynamic filtering initialized');
+    
+    // When doctor changes, filter services
+    doctorSelect.addEventListener('change', function() {
+        const doctorId = this.value;
+        
+        console.log('Doctor changed:', doctorId);
+        
+        if (!doctorId) {
+            // Reset to original services
+            serviceSelect.innerHTML = '';
+            originalServices.forEach(option => {
+                serviceSelect.appendChild(option.cloneNode(true));
+            });
+            serviceSelect.value = '';
+            return;
+        }
+        
+        // Show loading state
+        serviceSelect.disabled = true;
+        serviceSelect.innerHTML = '<option value="">Loading services...</option>';
+        
+        // Fetch services for this doctor
+        fetch(`/appointments/doctor/${doctorId}/services`)
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(services => {
+                console.log('Services received:', services);
+                
+                // Clear current options
+                serviceSelect.innerHTML = '<option value="">Choose a service...</option>';
+                
+                // Add filtered services
+                services.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.id;
+                    option.textContent = service.name;
+                    if (service.price) {
+                        option.textContent += ` - Mvr${parseFloat(service.price).toFixed(2)}`;
+                    }
+                    serviceSelect.appendChild(option);
+                });
+                
+                // Re-enable select
+                serviceSelect.disabled = false;
+                
+                // Reset service selection
+                serviceSelect.value = '';
+            })
+            .catch(error => {
+                console.error('Error fetching services:', error);
+                serviceSelect.disabled = false;
+                serviceSelect.innerHTML = '<option value="">Choose a service...</option>';
+                // Don't show alert, just log the error
+                console.log('Failed to load services. Using all services.');
+                // Restore original services
+                originalServices.forEach(option => {
+                    serviceSelect.appendChild(option.cloneNode(true));
+                });
+            });
+    });
+    
+    // When service changes, filter doctors
+    serviceSelect.addEventListener('change', function() {
+        const serviceId = this.value;
+        
+        console.log('Service changed:', serviceId);
+        
+        if (!serviceId) {
+            // Reset to original doctors
+            doctorSelect.innerHTML = '';
+            originalDoctors.forEach(option => {
+                doctorSelect.appendChild(option.cloneNode(true));
+            });
+            doctorSelect.value = '';
+            return;
+        }
+        
+        // Show loading state
+        doctorSelect.disabled = true;
+        const currentDoctorId = doctorSelect.value;
+        doctorSelect.innerHTML = '<option value="">Loading doctors...</option>';
+        
+        // Fetch doctors for this service
+        fetch(`/appointments/service/${serviceId}/doctors`)
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(doctors => {
+                console.log('Doctors received:', doctors);
+                
+                // Clear current options
+                doctorSelect.innerHTML = '<option value="">Choose a doctor...</option>';
+                
+                // Add filtered doctors
+                doctors.forEach(doctor => {
+                    const option = document.createElement('option');
+                    option.value = doctor.id;
+                    option.textContent = `${doctor.name} - ${doctor.specialization}`;
+                    doctorSelect.appendChild(option);
+                });
+                
+                // Re-enable select
+                doctorSelect.disabled = false;
+                
+                // Keep current selection if still valid
+                if (currentDoctorId && doctors.some(d => d.id == currentDoctorId)) {
+                    doctorSelect.value = currentDoctorId;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching doctors:', error);
+                doctorSelect.disabled = false;
+                doctorSelect.innerHTML = '<option value="">Choose a doctor...</option>';
+                // Don't show alert, just log the error
+                console.log('Failed to load doctors. Using all doctors.');
+                // Restore original doctors
+                originalDoctors.forEach(option => {
+                    doctorSelect.appendChild(option.cloneNode(true));
+                });
+            });
+    });
+});
 </script>
 @endpush

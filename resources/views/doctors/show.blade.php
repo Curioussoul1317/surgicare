@@ -24,7 +24,7 @@
         <div class="row g-4">
             <!-- Sidebar -->
             <div class="col-lg-4">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0"> 
                     @if($doctor->image)
                     <img src="{{ asset('storage/' . $doctor->image) }}" 
                          class="card-img-top" 
@@ -67,9 +67,9 @@
                         </div>
 
                         <div class="d-grid">
-                            <a href="{{ route('appointments.create') }}" class="btn btn-primary btn-lg">
-                                <i class="bi bi-calendar-check me-2"></i> Book Appointment
-                            </a>
+                        <a href="{{ route('appointments.create', ['doctor_id' => $doctor->id]) }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-calendar-check me-2"></i> Book Appointment
+                        </a>
                         </div>
                     </div>
                 </div>

@@ -88,9 +88,9 @@
                         <hr>
 
                         <div class="d-grid gap-2">
-                            <a href="{{ route('appointments.create') }}" class="btn btn-primary btn-lg">
-                                <i class="bi bi-calendar-check"></i> Book Appointment
-                            </a>
+                        <a href="{{ route('appointments.create', ['service_id' => $service->id]) }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-calendar-check me-2"></i> Book Appointment
+                        </a>
                             <a href="{{ route('contact') }}" class="btn btn-outline-primary">
                                 <i class="bi bi-question-circle"></i> Ask a Question
                             </a>
