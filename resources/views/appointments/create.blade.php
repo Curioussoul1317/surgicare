@@ -342,33 +342,26 @@ document.getElementById('appointmentForm').addEventListener('submit', function(e
 
 @endpush
 
-
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const doctorSelect = document.getElementById('doctor_id');
     const serviceSelect = document.getElementById('service_id');
-    
-    // Only add event listeners if both selects exist (not pre-selected)
+     
     if (!doctorSelect || !serviceSelect) {
-        console.log('Doctor or Service select not found on page');
         return;
     }
-    
-    // Store original options
+     
     const originalServices = Array.from(serviceSelect.options);
-    const originalDoctors = Array.from(doctorSelect.options);
     
-    console.log('Dynamic filtering initialized');
-    
-    // When doctor changes, filter services
+    console.log('One-way doctor->service filtering initialized');
+     
     doctorSelect.addEventListener('change', function() {
         const doctorId = this.value;
         
         console.log('Doctor changed:', doctorId);
         
-        if (!doctorId) {
-            // Reset to original services
+        if (!doctorId) { 
             serviceSelect.innerHTML = '';
             originalServices.forEach(option => {
                 serviceSelect.appendChild(option.cloneNode(true));
@@ -376,27 +369,22 @@ document.addEventListener('DOMContentLoaded', function() {
             serviceSelect.value = '';
             return;
         }
-        
-        // Show loading state
+         
         serviceSelect.disabled = true;
+        const currentServiceId = serviceSelect.value;
         serviceSelect.innerHTML = '<option value="">Loading services...</option>';
-        
-        // Fetch services for this doctor
+         
         fetch(`/appointments/doctor/${doctorId}/services`)
             .then(response => {
-                console.log('Response status:', response.status);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.json();
             })
             .then(services => {
-                console.log('Services received:', services);
+                console.log('Services received:', services.length);
                 
-                // Clear current options
+             
                 serviceSelect.innerHTML = '<option value="">Choose a service...</option>';
                 
-                // Add filtered services
                 services.forEach(service => {
                     const option = document.createElement('option');
                     option.value = service.id;
@@ -407,89 +395,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     serviceSelect.appendChild(option);
                 });
                 
-                // Re-enable select
                 serviceSelect.disabled = false;
-                
-                // Reset service selection
-                serviceSelect.value = '';
+                 
+                if (currentServiceId && services.some(s => s.id == currentServiceId)) {
+                    serviceSelect.value = currentServiceId;
+                }
             })
             .catch(error => {
-                console.error('Error fetching services:', error);
+                console.error('Error:', error);
                 serviceSelect.disabled = false;
-                serviceSelect.innerHTML = '<option value="">Choose a service...</option>';
-                // Don't show alert, just log the error
-                console.log('Failed to load services. Using all services.');
-                // Restore original services
+                serviceSelect.innerHTML = '';
                 originalServices.forEach(option => {
                     serviceSelect.appendChild(option.cloneNode(true));
                 });
+                if (currentServiceId) {
+                    serviceSelect.value = currentServiceId;
+                }
             });
     });
-    
-    // When service changes, filter doctors
-    serviceSelect.addEventListener('change', function() {
-        const serviceId = this.value;
-        
-        console.log('Service changed:', serviceId);
-        
-        if (!serviceId) {
-            // Reset to original doctors
-            doctorSelect.innerHTML = '';
-            originalDoctors.forEach(option => {
-                doctorSelect.appendChild(option.cloneNode(true));
-            });
-            doctorSelect.value = '';
-            return;
-        }
-        
-        // Show loading state
-        doctorSelect.disabled = true;
-        const currentDoctorId = doctorSelect.value;
-        doctorSelect.innerHTML = '<option value="">Loading doctors...</option>';
-        
-        // Fetch doctors for this service
-        fetch(`/appointments/service/${serviceId}/doctors`)
-            .then(response => {
-                console.log('Response status:', response.status);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(doctors => {
-                console.log('Doctors received:', doctors);
-                
-                // Clear current options
-                doctorSelect.innerHTML = '<option value="">Choose a doctor...</option>';
-                
-                // Add filtered doctors
-                doctors.forEach(doctor => {
-                    const option = document.createElement('option');
-                    option.value = doctor.id;
-                    option.textContent = `${doctor.name} - ${doctor.specialization}`;
-                    doctorSelect.appendChild(option);
-                });
-                
-                // Re-enable select
-                doctorSelect.disabled = false;
-                
-                // Keep current selection if still valid
-                if (currentDoctorId && doctors.some(d => d.id == currentDoctorId)) {
-                    doctorSelect.value = currentDoctorId;
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching doctors:', error);
-                doctorSelect.disabled = false;
-                doctorSelect.innerHTML = '<option value="">Choose a doctor...</option>';
-                // Don't show alert, just log the error
-                console.log('Failed to load doctors. Using all doctors.');
-                // Restore original doctors
-                originalDoctors.forEach(option => {
-                    doctorSelect.appendChild(option.cloneNode(true));
-                });
-            });
-    });
+     
 });
 </script>
 @endpush
