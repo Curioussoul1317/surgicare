@@ -120,7 +120,7 @@
 
             <!-- Pagination -->
             <div class="mt-4">
-                {{ $sliders->links() }}
+                {{ $sliders->links('custom.pagination') }}
             </div>
             @else
             <div class="text-center py-5">

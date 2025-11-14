@@ -104,44 +104,39 @@
                             </td>
                             <td>{{ $department->order }}</td>
                             <td class="text-end">
-                                <div class="btn-group">
-                                    <a href="{{ route('admin.departments.show', $department) }}" 
-                                       class="btn btn-sm btn-primary" 
-                                       title="View">
-                                        <i class="fas fa-eye"></i>
-                                        v
-                                    </a>
-                                    <a href="{{ route('admin.departments.edit', $department) }}" 
-                                       class="btn btn-sm btn-warning" 
-                                       title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                        E
-                                    </a>
-                                    <a href="{{ route('admin.departments.assign-doctors', $department) }}" 
-                                       class="btn btn-sm btn-info" 
-                                       title="Assign Doctors">
-                                        <i class="fas fa-user-md"></i>
-                                        AD
-                                    </a>
-                                    <a href="{{ route('admin.departments.assign-services', $department) }}" 
-                                       class="btn btn-sm btn-success" 
-                                       title="Assign Services">
-                                        <i class="fas fa-stethoscope"></i>
-                                        AS
-                                    </a>
-                                    <form action="{{ route('admin.departments.destroy', $department) }}" 
-                                          method="POST" 
-                                          class="d-inline"
-                                          onsubmit="return confirm('Are you sure you want to delete this department?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                            D
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+    <div class="btn-group">
+        <a href="{{ route('admin.departments.show', $department) }}" 
+           class="btn btn-sm btn-primary" 
+           title="View">
+            <i class="ri-eye-line"></i>
+        </a>
+        <a href="{{ route('admin.departments.edit', $department) }}" 
+           class="btn btn-sm btn-warning" 
+           title="Edit">
+            <i class="ri-edit-line"></i>
+        </a>
+        <a href="{{ route('admin.departments.assign-doctors', $department) }}" 
+           class="btn btn-sm btn-info" 
+           title="Assign Doctors">
+            <i class="ri-user-heart-line"></i>
+        </a>
+        <a href="{{ route('admin.departments.assign-services', $department) }}" 
+           class="btn btn-sm btn-success" 
+           title="Assign Services">
+            <i class="ri-heart-pulse-line"></i>
+        </a>
+        <form action="{{ route('admin.departments.destroy', $department) }}" 
+              method="POST" 
+              class="d-inline"
+              onsubmit="return confirm('Are you sure you want to delete this department?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                <i class="ri-delete-bin-line"></i>
+            </button>
+        </form>
+    </div>
+</td>
                         </tr>
                         @empty
                         <tr>
@@ -158,7 +153,7 @@
         
         @if($departments->hasPages())
         <div class="card-footer">
-            {{ $departments->links() }}
+            {{ $departments->links('custom.pagination') }}
         </div>
         @endif
     </div>

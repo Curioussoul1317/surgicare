@@ -4,16 +4,44 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
-    <div class="container">
-        <nav aria-label="breadcrumb">
+ 
+
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
+    <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('services.index') }}" class="text-white">Services</a></li>
                 <li class="breadcrumb-item active text-white" aria-current="page">{{ $service->name }}</li>
             </ol>
         </nav>
-        <h1 class="display-4 fw-bold">{{ $service->name }}</h1>
+        <h1 class="display-4 fw-bold"> {{ $service->name }}</h1> 
     </div>
 </section>
 
@@ -47,10 +75,10 @@
                                             <i class="bi bi-person-circle fs-4"></i>
                                         </div>
                                         @endif
-                                        <div>
+                                                           <div>
                                             <h5 class="mb-0">{{ $doctor->name }}</h5>
                                             <p class="text-muted small mb-0">{{ $doctor->specialization }}</p>
-                                            <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-sm btn-link p-0">View Profile</a>
+                                            <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-sm btn-link p-0 viewprofile">View Profile</a> 
                                         </div>
                                     </div>
                                 </div>

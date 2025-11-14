@@ -480,7 +480,137 @@
     
     @stack('styles')
 </head>
+
+
+
+
+
+
+<style>
+    #loading-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spin-wrapper {
+  display: flex;
+  gap: 6px;
+  margin: 4px;
+  animation: rotate 1.6s linear infinite;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  background-color: #00beb5;
+  border-radius: 50%;
+  animation: pulse 0.8s ease-in-out infinite alternate;
+}
+
+/* Circle pulse animation */
+@keyframes pulse {
+  0% { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Rotate animation for each wrapper */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Delay each wrapper for a wave effect */
+.spin-wrapper:nth-child(1)  { animation-delay: 0s; }
+.spin-wrapper:nth-child(2)  { animation-delay: 0.1s; }
+.spin-wrapper:nth-child(3)  { animation-delay: 0.2s; }
+.spin-wrapper:nth-child(4)  { animation-delay: 0.3s; }
+.spin-wrapper:nth-child(5)  { animation-delay: 0.4s; }
+.spin-wrapper:nth-child(6)  { animation-delay: 0.5s; }
+.spin-wrapper:nth-child(7)  { animation-delay: 0.6s; }
+.spin-wrapper:nth-child(8)  { animation-delay: 0.7s; }
+.spin-wrapper:nth-child(9)  { animation-delay: 0.8s; }
+.spin-wrapper:nth-child(10) { animation-delay: 0.9s; }
+.spin-wrapper:nth-child(11) { animation-delay: 1.0s; }
+.spin-wrapper:nth-child(12) { animation-delay: 1.1s; }
+
+    </style>
 <body>
+
+
+<div id="loading-wrapper"  >
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="spin-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    </div>
+
+
+    <script>
+window.addEventListener('load', function() {
+    const loader = document.getElementById('loading-wrapper');
+  
+    setTimeout(function() {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.5s ease';
+        
+        setTimeout(function() {
+            loader.style.display = 'none';
+        }, 500);
+    }, 1500);  
+});
+</script>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">

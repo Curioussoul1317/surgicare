@@ -4,19 +4,47 @@
 
 @section('content')
 <!-- Page Header -->
-<section class="bg-primary text-white py-5">
-    <div class="container">
-        <nav aria-label="breadcrumb">
+ 
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
+    <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-3">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('doctors.index') }}" class="text-white text-decoration-none">Doctors</a></li>
                 <li class="breadcrumb-item active text-white" aria-current="page">{{ $doctor->name }}</li>
             </ol>
         </nav>
-        <h1 class="display-5 fw-bold mb-2">{{ $doctor->name }}</h1>
-        <p class="lead mb-0">{{ $doctor->specialization }}</p>
+        <h1 class="display-4 fw-bold">{{ $doctor->name }}</h1> 
+        <p class="lead">{{ $doctor->specialization }}</p>
     </div>
 </section>
+
 
 <!-- Doctor Profile -->
 <section class="py-5">

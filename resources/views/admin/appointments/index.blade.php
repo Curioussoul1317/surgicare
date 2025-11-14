@@ -186,40 +186,40 @@
                                 @endswitch
                             </td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.appointments.show', $appointment) }}" 
-                                       class="btn btn-sm btn-info"
-                                       title="View Details">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    
-                                    @if($appointment->status === 'pending')
-                                    <button type="button" 
-                                            class="btn btn-sm btn-success" 
-                                            onclick="updateStatus({{ $appointment->id }}, 'confirmed')"
-                                            title="Confirm">
-                                        <i class="bi bi-check-circle"></i>
-                                    </button>
-                                    <button type="button" 
-                                            class="btn btn-sm btn-danger" 
-                                            onclick="updateStatus({{ $appointment->id }}, 'rejected')"
-                                            title="Reject">
-                                        <i class="bi bi-x-circle"></i>
-                                    </button>
-                                    @endif
+    <div class="btn-group" role="group">
+        <a href="{{ route('admin.appointments.show', $appointment) }}" 
+           class="btn btn-sm btn-info"
+           title="View Details">
+            <i class="ri-eye-line"></i>
+        </a>
+        
+        @if($appointment->status === 'pending')
+        <button type="button" 
+                class="btn btn-sm btn-success" 
+                onclick="updateStatus({{ $appointment->id }}, 'confirmed')"
+                title="Confirm">
+            <i class="ri-checkbox-circle-line"></i>
+        </button>
+        <button type="button" 
+                class="btn btn-sm btn-danger" 
+                onclick="updateStatus({{ $appointment->id }}, 'rejected')"
+                title="Reject">
+            <i class="ri-close-circle-line"></i>
+        </button>
+        @endif
 
-                                    <form action="{{ route('admin.appointments.destroy', $appointment) }}" 
-                                          method="POST" 
-                                          onsubmit="return confirm('Are you sure you want to delete this appointment?');"
-                                          class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-dark" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+        <form action="{{ route('admin.appointments.destroy', $appointment) }}" 
+              method="POST" 
+              onsubmit="return confirm('Are you sure you want to delete this appointment?');"
+              class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-dark" title="Delete">
+                <i class="ri-delete-bin-line"></i>
+            </button>
+        </form>
+    </div>
+</td>
                         </tr>
                         @empty
                         <tr>

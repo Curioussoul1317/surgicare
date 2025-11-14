@@ -3,9 +3,52 @@
 @section('title', $department->name)
 
 @section('content')
+
+<section class="bg-primary text-white py-5 position-relative overflow-hidden" style="min-height: 40px;">
+    <ul class="background">
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+    
+    <div class="container position-relative" style="z-index: 1;">
+    <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('departments.index') }}">Departments</a></li>
+                    <li class="breadcrumb-item active">{{ $department->name }}</li>
+                </ol>
+            </nav>
+        <h1 class="display-4 fw-bold">  {{ $department->name }}</h1>
+        @if($department->description)
+            <p class="lead">{{ $department->description }}</p>
+            @endif 
+    </div>
+</section>
+
 <div class="container py-5">
     <!-- Department Header -->
-    <div class="row mb-5">
+    <!-- <div class="row mb-5">
         <div class="col-lg-8">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -34,7 +77,7 @@
                  alt="{{ $department->name }}">
         </div>
         @endif
-    </div>
+    </div> -->
 
     <!-- Doctors Section -->
     @if($department->doctors->isNotEmpty())
@@ -68,21 +111,25 @@
                             {{ $doctor->specialization }}
                         </p>
                         @endif
-                        
-                        @if($doctor->email)
+                        <!-- <a href="" class="btn btn-sm btn-link p-0 viewprofile"></a>  -->
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-envelope me-1"></i>
+                            <a href="{{ route('doctors.show', $doctor->id) }}">View Profile</a>
+                        </p>
+                        <!-- @if($doctor->email)
                         <p class="text-muted mb-2">
                             <i class="fas fa-envelope me-1"></i>
                             <a href="mailto:{{ $doctor->email }}">{{ $doctor->email }}</a>
                         </p>
-                        @endif
+                        @endif -->
                         
-                        @if($doctor->phone)
+                        <!-- @if($doctor->phone)
                         <p class="text-muted mb-2">
                             <i class="fas fa-phone me-1"></i>
                             {{ $doctor->phone }}
                         </p>
-                        @endif
-                        
+                        @endif -->
+                         
                         @if(isset($doctor->slug))
                         <a href="{{ route('doctors.show', $doctor->slug) }}" class="btn btn-outline-primary btn-sm mt-2">
                             View Profile

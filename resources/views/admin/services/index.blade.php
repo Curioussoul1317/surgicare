@@ -69,20 +69,20 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.services.edit', $service) }}" 
-                                       class="btn btn-sm btn-warning">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <form action="{{ route('admin.services.destroy', $service) }}" 
-                                          method="POST" 
-                                          onsubmit="return confirm('Are you sure you want to delete this service?');"
-                                          class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
+                                <a href="{{ route('admin.services.edit', $service) }}" 
+   class="btn btn-sm btn-warning">
+    <i class="ri-pencil-line"></i>
+</a>
+<form action="{{ route('admin.services.destroy', $service) }}" 
+      method="POST" 
+      onsubmit="return confirm('Are you sure you want to delete this service?');"
+      class="d-inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-sm btn-danger">
+        <i class="ri-delete-bin-line"></i>
+    </button>
+</form>
                                 </div>
                             </td>
                         </tr>
@@ -103,7 +103,7 @@
 
             <!-- Pagination -->
             <div class="d-flex justify-content-center mt-3">
-                {{ $services->links() }}
+                {{ $services->links('custom.pagination') }}
             </div>
         </div>
     </div>

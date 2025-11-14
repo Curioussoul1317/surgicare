@@ -72,7 +72,7 @@
                                 <div class="btn-group" role="group">
                                     <a href="{{ route('admin.doctors.edit', $doctor) }}" 
                                        class="btn btn-sm btn-warning">
-                                        <i class="bi bi-pencil"></i>
+                                       <i class="ri-pencil-line"></i>
                                     </a>
                                     <form action="{{ route('admin.doctors.destroy', $doctor) }}" 
                                           method="POST" 
@@ -81,7 +81,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="bi bi-trash"></i>
+                                        <i class="ri-delete-bin-line"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -104,7 +104,7 @@
 
             <!-- Pagination -->
             <div class="d-flex justify-content-center mt-3">
-                {{ $doctors->links() }}
+                {{ $doctors->links('custom.pagination') }}
             </div>
         </div>
     </div>

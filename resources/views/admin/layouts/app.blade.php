@@ -6,11 +6,11 @@
     <title>@yield('title', 'Admin Panel - SurgiCare')</title>
 
     <!-- Meta -->
-    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards">
-    <meta property="og:title" content="Admin Templates - Dashboard Templates">
-    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta name="description" content=" ">
+    <meta property="og:title" content=" ">
+    <meta property="og:description" content=" ">
     <meta property="og:type" content="Website">
-    <link rel="shortcut icon" href="https://www.bootstrapget.com/demos/apollo-medical-admin-template/assets/images/favicon.svg">
+ 
 
     <!-- *************
 		************ CSS Files *************
@@ -24,7 +24,56 @@
 
  
 </head>
+<style>
+.custom-pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+    align-items: center;
+}
 
+.custom-pagination .page-item {
+    list-style: none;
+}
+
+.custom-pagination .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.custom-pagination .page-link:hover {
+    background-color: #f8f9fa;
+    border-color: #00beb5;
+    color: #00beb5;
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: #00beb5;
+    border-color: #00beb5;
+    color: #fff;
+    font-weight: 600;
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    color: #ccc;
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+</style>
   <body>
 
     <!-- Loading starts -->
