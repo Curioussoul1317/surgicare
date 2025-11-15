@@ -86,7 +86,7 @@
         @endif
     </div>
 </section> -->
-
+@include('components.pwa-install-prompt')
 <section class="hero-slider">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <!-- Indicators -->

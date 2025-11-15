@@ -21,7 +21,9 @@ Auth::routes();
 | Web Routes
 |--------------------------------------------------------------------------
 */
- 
+Route::get('/offline', function () {
+    return view('offline');
+})->name('offline');
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
