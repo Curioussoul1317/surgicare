@@ -17,7 +17,11 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/surgicare-custom.css') }}" rel="stylesheet">
     @stack('styles')
-    <meta name="theme-color" content="#0d6efd"/>
+    <meta name="theme-color" content="#0d6efd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="SurgiCare">
+    
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/images/icons/icon-512x512.png">
@@ -358,7 +362,7 @@ Rep. of Maldives </li>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Live Search Script -->
+   
     <script>
         let searchTimeout;
         const searchInput = document.getElementById('liveSearchInput');
@@ -434,9 +438,9 @@ Rep. of Maldives </li>
         }
     </script>
     
-    <!-- Chat Widget Script -->
+ 
     <script>
-        // Chat Widget Elements
+   
         const chatWidgetBtn = document.getElementById('chatWidgetBtn');
         const chatWindow = document.getElementById('chatWindow');
         const chatCloseBtn = document.getElementById('chatCloseBtn');
@@ -445,12 +449,11 @@ Rep. of Maldives </li>
         const chatSendBtn = document.getElementById('chatSendBtn');
         const quickOptions = document.querySelectorAll('.quick-option-btn');
         
-        // Toggle chat window
+     
         chatWidgetBtn.addEventListener('click', function() {
             chatWindow.classList.toggle('show');
             if (chatWindow.classList.contains('show')) {
-                chatInput.focus();
-                // Hide notification badge when opened
+                chatInput.focus(); 
                 document.getElementById('chatNotificationBadge').style.display = 'none';
             }
         });
@@ -458,29 +461,23 @@ Rep. of Maldives </li>
         chatCloseBtn.addEventListener('click', function() {
             chatWindow.classList.remove('show');
         });
-        
-        // Send message function
+         
         function sendMessage(message) {
             if (!message.trim()) return;
-            
-            // Add user message
+             
             addMessage(message, 'user');
             chatInput.value = '';
-            
-            // Scroll to bottom
+             
             scrollToBottom();
-            
-            // Show typing indicator
+             
             showTypingIndicator();
-            
-            // Simulate bot response (replace with actual API call)
+             
             setTimeout(() => {
                 hideTypingIndicator();
                 handleBotResponse(message);
             }, 1500);
         }
-        
-        // Add message to chat
+         
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `chat-message ${sender}`;
@@ -506,8 +503,7 @@ Rep. of Maldives </li>
             chatBody.appendChild(messageDiv);
             scrollToBottom();
         }
-        
-        // Handle bot responses
+         
         function handleBotResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
             
@@ -527,8 +523,7 @@ Rep. of Maldives </li>
                 addMessage("Thank you for your message! For immediate assistance, you can contact us via WhatsApp, phone, or email. How else can I help you?", 'bot');
             }
         }
-        
-        // Add contact options
+         
         function addContactOptions() {
             const optionsDiv = document.createElement('div');
             optionsDiv.className = 'contact-options';
@@ -566,8 +561,7 @@ Rep. of Maldives </li>
             chatBody.appendChild(optionsDiv);
             scrollToBottom();
         }
-        
-        // Add link button
+         
         function addLinkButton(text, url) {
             const btnDiv = document.createElement('div');
             btnDiv.className = 'chat-message bot';
@@ -584,8 +578,7 @@ Rep. of Maldives </li>
             chatBody.appendChild(btnDiv);
             scrollToBottom();
         }
-        
-        // Typing indicator
+         
         function showTypingIndicator() {
             const indicator = document.createElement('div');
             indicator.className = 'chat-message bot';
@@ -610,13 +603,11 @@ Rep. of Maldives </li>
                 indicator.remove();
             }
         }
-        
-        // Scroll to bottom
+         
         function scrollToBottom() {
             chatBody.scrollTop = chatBody.scrollHeight;
         }
-        
-        // Event listeners
+         
         chatSendBtn.addEventListener('click', function() {
             sendMessage(chatInput.value);
         });
@@ -626,21 +617,18 @@ Rep. of Maldives </li>
                 sendMessage(chatInput.value);
             }
         });
-        
-        // Quick options
+         
         quickOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const message = this.getAttribute('data-message');
                 sendMessage(message);
             });
         });
-        
-        // Enable/disable send button based on input
+         
         chatInput.addEventListener('input', function() {
             chatSendBtn.disabled = !this.value.trim();
         });
-        
-        // Show notification badge after 5 seconds (optional)
+         
         setTimeout(() => {
             if (!chatWindow.classList.contains('show')) {
                 document.getElementById('chatNotificationBadge').style.display = 'flex';

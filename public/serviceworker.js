@@ -1,19 +1,14 @@
 var staticCacheName = "surgicare-pwa-v" + new Date().getTime();
 
-// Files to cache - ONLY static assets and public pages
+// Files to cache
 var filesToCache = [
     '/offline',
     '/',
     '/login',
     '/register',
-    '/css/app.css',
-    '/js/app.js',
-    '/images/logo.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-512x512.png',
 ];
 
-// CRITICAL: Routes that should NEVER be cached (sensitive data)
+// Routes that should NEVER be cached
 var noCacheRoutes = [
     '/otp',
     '/verify-otp',
@@ -22,8 +17,6 @@ var noCacheRoutes = [
     '/payment',
     '/api/',
     '/admin',
-    '/doctor/patients',
-    '/medical-records',
 ];
 
 // Install Service Worker
@@ -33,7 +26,7 @@ self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(staticCacheName)
             .then(cache => {
-                console.log('[SW] Caching static files');
+                console.log('[SW] Caching app shell');
                 return cache.addAll(filesToCache);
             })
             .catch(err => {
@@ -52,7 +45,7 @@ self.addEventListener('activate', event => {
                     .filter(cacheName => cacheName.startsWith("surgicare-pwa-"))
                     .filter(cacheName => cacheName !== staticCacheName)
                     .map(cacheName => {
-                        console.log('[SW] Deleting old cache:', cacheName);
+                        console.log('[SW] Removing old cache:', cacheName);
                         return caches.delete(cacheName);
                     })
             );
@@ -60,34 +53,31 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Fetch Strategy - Network First for sensitive data, Cache First for static assets
+// Fetch Strategy
 self.addEventListener("fetch", event => {
     const requestUrl = new URL(event.request.url);
 
-    // NEVER cache sensitive routes - always fetch from network
+    // Never cache sensitive routes
     const isSensitiveRoute = noCacheRoutes.some(route =>
         requestUrl.pathname.includes(route)
     );
 
-    // NEVER cache POST requests (form submissions, OTP, etc.)
+    // Never cache POST requests
     if (event.request.method !== 'GET' || isSensitiveRoute) {
         event.respondWith(fetch(event.request));
         return;
     }
 
-    // For GET requests of static assets - try cache first, then network
+    // Cache-first strategy for static assets
     event.respondWith(
         caches.match(event.request)
             .then(response => {
                 if (response) {
-                    console.log('[SW] Serving from cache:', event.request.url);
                     return response;
                 }
 
-                // Not in cache, fetch from network
                 return fetch(event.request)
                     .then(networkResponse => {
-                        // Cache successful responses (except API calls)
                         if (networkResponse.ok && !requestUrl.pathname.includes('/api/')) {
                             return caches.open(staticCacheName).then(cache => {
                                 cache.put(event.request, networkResponse.clone());
@@ -97,17 +87,8 @@ self.addEventListener("fetch", event => {
                         return networkResponse;
                     })
                     .catch(() => {
-                        // Network failed, show offline page
                         return caches.match('/offline');
                     });
             })
     );
-});
-
-// Background Sync for offline appointment requests (optional advanced feature)
-self.addEventListener('sync', event => {
-    if (event.tag === 'sync-appointments') {
-        console.log('[SW] Syncing appointments...');
-        // You can implement background sync here later
-    }
 });
